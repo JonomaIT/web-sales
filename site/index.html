@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vendas · JonomaIT</title>
+  <meta name="description" content="Simulador de vendas do lab JonomaIT: cria vendas e acompanha o processamento nas duas regiões.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Vendas <span class="muted">· lab JonomaIT</span></h1>
+    <div id="region" class="region" aria-live="polite">Consultando a região…</div>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Nova venda</h2>
+      <form id="form">
+        <label>Produto <input id="product" required maxlength="100" value="café especial"></label>
+        <label>Valor (R$) <input id="amount" required type="number" min="0.01" max="1000000" step="0.01" value="12.50"></label>
+        <div class="actions">
+          <button type="submit">Criar venda</button>
+          <button type="button" id="burst" class="secondary">Criar 5 de uma vez</button>
+        </div>
+      </form>
+      <p id="message" class="message" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="card">
+      <div class="title-row">
+        <h2>Vendas desta sessão</h2>
+        <button type="button" id="clear" class="link">limpar</button>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Produto</th><th>Valor</th><th>Criada em</th><th>Status</th><th>Processada em</th><th>Tempo</th><th></th></tr>
+        </thead>
+        <tbody id="sales"><tr class="empty"><td colspan="7">Nenhuma venda ainda.</td></tr></tbody>
+      </table>
+    </section>
+
+    <section class="card how">
+      <h2>O que acontece</h2>
+      <ol>
+        <li><b>A API</b> (<code>sales.joshuel.com.br</code>, região que o Cloudflare escolher) grava a venda como <span class="badge pending">PENDING</span> na tabela global e publica o evento.</li>
+        <li>O evento chega à <b>fila das duas regiões</b>. Só o worker da região <b>ACTIVE</b> consome; a PASSIVE guarda a cópia para um failover.</li>
+        <li>O worker gera o recibo no S3 (replicado para a outra região) e marca a venda como <span class="badge processed">PROCESSED</span>.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="muted">Site estático no CloudFront (<code>web-sales</code>) · API <code>svc-sales-api</code> · worker <code>svc-sales-worker</code></footer>
+  <script src="app.js"></script>
+</body>
+</html>
