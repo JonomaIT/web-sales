@@ -1,0 +1,18 @@
+name: CI
+
+# Logic lives in JonomaIT/pipelines (build-static): npm ci, lint, typecheck, tests, build and a
+# dependency scan on every pull request; on main the built site is kept as the `site` artifact.
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  site:
+    uses: JonomaIT/pipelines/.github/workflows/build-static.yml@v2.1.0

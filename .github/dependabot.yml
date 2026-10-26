@@ -1,0 +1,19 @@
+# Weekly version bumps as pull requests, grouped so a release of a family is one PR: Cloudscape,
+# React and its router, the test and build tooling; plus the reusable workflows (pipelines tags).
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      cloudscape:
+        patterns: ["@cloudscape-design/*"]
+      react:
+        patterns: ["react", "react-dom", "react-router", "@types/react*", "@tanstack/*"]
+      tooling:
+        dependency-type: development
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
