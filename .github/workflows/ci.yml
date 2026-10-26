@@ -15,4 +15,4 @@ permissions:
 
 jobs:
   site:
-    uses: JonomaIT/pipelines/.github/workflows/build-static.yml@v2.1.0
+    uses: JonomaIT/pipelines/.github/workflows/build-static.yml@v2.2.0
