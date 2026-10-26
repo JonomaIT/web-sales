@@ -17,7 +17,7 @@ deploy/
 └── env/production.tfvars   hosts
 ```
 
-The infrastructure (private bucket, distribution, public name) comes from the `cloudfront` runner in [`pipelines`](https://github.com/JonomaIT/pipelines) with the `cloudfront-site` and `app-dns` patterns of [`terraform-modules`](https://github.com/JonomaIT/terraform-modules), the same as [`web-app`](https://github.com/JonomaIT/web-app): a new site is a repo with `site/` and two small files, no Terraform.
+The infrastructure (private bucket, distribution, public name) comes from the `cloudfront` runner in [`pipelines`](https://github.com/JonomaIT/pipelines) with the `cloudfront-site` and `app-dns` patterns of [`terraform-modules`](https://github.com/JonomaIT/terraform-modules): a new site is a repo with `site/` and two small files, no Terraform.
 
 ## Deploy (by hand, until the deploy pipeline exists)
 
