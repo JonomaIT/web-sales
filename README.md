@@ -62,7 +62,7 @@ src/
 
 The infrastructure (private bucket, distribution, public name) comes from the `cloudfront` runner with the `cloudfront-site` and `app-dns` patterns of [`terraform-modules`](https://github.com/JonomaIT/terraform-modules); `deploy/app.hcl` says the site is in `dist` and is a single-page app.
 
-**The pipeline deploys** (`deploy-app` of `pipelines`): on `main` when the `AUTO_DEPLOY` org variable is `true` (the lab is up), or by hand in *Actions → CI → Run workflow* (`destroy` removes the app, data last). It runs, in the production GitHub Environment, the infrastructure, the upload of the `site` artifact and the invalidation. By hand, the same steps:
+**The pipeline deploys** (`deploy-app` of `pipelines`): on `main` when the `AUTO_DEPLOY` org variable is `true` (the lab is up), or by hand in _Actions → CI → Run workflow_ (`destroy` removes the app, data last). It runs, in the production GitHub Environment, the infrastructure, the upload of the `site` artifact and the invalidation. By hand, the same steps:
 
 1. Infrastructure, from `pipelines/terraform-runner/cloudfront` (state key `production/global/apps/web-sales`):
 
