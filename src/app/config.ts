@@ -19,7 +19,10 @@ export async function loadConfig(url = "/config.json"): Promise<AppConfig> {
   if (!res.ok) throw new Error(`${url}: HTTP ${res.status}`);
   const data: unknown = await res.json();
   if (!isConfig(data)) throw new Error(`${url}: environment and apiUrl are required`);
-  current = { ...data, apiUrl: data.apiUrl.replace(/\/+$/, "") };
+  // {zone} is the platform's zone, written into the file by the deploy (pipelines deploy-app).
+  // Outside a deploy (npm run dev, the simulated API) nothing writes it: a local name keeps the
+  // address valid.
+  current = { ...data, apiUrl: data.apiUrl.replace("{zone}", "localhost").replace(/\/+$/, "") };
   return current;
 }
 
