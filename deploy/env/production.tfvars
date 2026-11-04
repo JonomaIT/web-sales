@@ -1,1 +1,1 @@
-hosts = ["vendas.joshuel.com.br"]
+hosts = ["vendas"] # vendas.<platform zone>

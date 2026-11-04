@@ -1,4 +1,4 @@
 {
   "environment": "production",
-  "apiUrl": "https://sales.joshuel.com.br"
+  "apiUrl": "https://sales.{zone}"
 }

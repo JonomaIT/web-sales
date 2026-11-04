@@ -50,7 +50,7 @@ src/
 └── test/               test setup and renderApp(path): the whole app on a route
 ```
 
-- **Runtime configuration.** The API address is not in the bundle: the site reads `/config.json` (`environment`, `apiUrl`) before rendering, so the same build serves every environment (_build once, deploy many_). `public/config.json` holds production's.
+- **Runtime configuration.** The API address is not in the bundle: the site reads `/config.json` (`environment`, `apiUrl`) before rendering, so the same build serves every environment (_build once, deploy many_). `public/config.json` holds production's, with `{zone}` for the platform's zone (`https://sales.{zone}`): the deploy writes the zone, so the repo names no domain.
 - **Server state in TanStack Query**: one cache, polling while a sale is pending, retries for network errors and 5xx, never for 4xx.
 - **Errors never blank the page**: route errors show an alert, API errors show where they happened.
 - **Accessible by default**: Cloudscape components, labels on every control, and tests that find elements by role and name, as a screen reader would.
