@@ -1,0 +1,15 @@
+# Software catalog entry (Backstage format). It is the source of truth for what this repo is,
+# who owns it and how it runs; a portal or a script can read every repo's file.
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: web-sales
+  description: "Reference app: sales simulator site (runtime cloudfront) on top of svc-sales-api."
+  annotations:
+    github.com/project-slug: JonomaIT/web-sales
+  tags: [cloudfront,react,reference]
+spec:
+  type: website
+  lifecycle: experimental
+  owner: group:jonomait/gh-dev-vendas
+  system: sales
